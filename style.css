@@ -1,3 +1,18 @@
 .modal {
     background: #c6d0ff7a;
 }
+
+.choices__inner{
+    padding: 0px !important;
+    min-height: 38px !important;
+    border-radius: .375rem !important;
+}
+
+.choices__list--single{
+    padding: 7px 16px 4px 12px !important;
+}
+
+.btn-img{
+    width: 100px;
+    height: 50px;
+}

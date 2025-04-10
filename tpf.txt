@@ -1,0 +1,24 @@
+na kolokwium:
+mapa kliknięć 
+mapa przesunięć
+
+
+///////////
+imie i nazwisko do jednej lini
+pobrac kraj z ip
+przefiltrowa liste, jak sie wprowadza literke to lista sie skraca
+numer kierunkowy na podstowanie adresu ip
+
+uzupelnic miasto i kod pocztowy na podstawie ulicy
+ 
+jak select ma mniej niz 6 opcji to nie robic select tylko guziki (jkby radio btn)  (rodzaj przesylki i platnosci)
+
+email na poczatku formuarza
+password niepotrzebne
+
+pola do faktury pojawiaja sie dopiero jak sie kliknie ze sie chce, dane do faktury sie uzupelniaja automatycznie
+
+placeholder przykładowe imie (nie wpisz imie tylko Jan)
+
+zeby przegladarna miala opcje autouzupelnienia formularza
+

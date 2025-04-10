@@ -6,6 +6,7 @@ const modal = document.getElementById('form-feedback-modal');
 const clicksInfo = document.getElementById('click-count');
 let countryChoices;
 const vatUECheckbox = document.getElementById('vatUE');
+const vatNumberInput = document.getElementById('vatNumber');
 const invoiceSection = document.getElementById('invoiceSection');
 
 function handleClick() {
@@ -111,12 +112,43 @@ async function fetchAndFillCountryCodes() {
     }
 }
 
+function updateInvoiceData() {
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName = document.getElementById('lastName').value.trim();
+    const street = document.getElementById('street').value.trim();
+    const city = document.getElementById('city').value.trim();
+    const zipCode = document.getElementById('zipCode').value.trim();
+    const country = document.getElementById('country').value.trim();
+    const phonePrefix = document.getElementById('countryCode').value.trim();
+    const phoneNumber = document.getElementById('phoneNumber').value.trim();
+    const vat = document.getElementById('vatNumber').value.trim();
+
+    const fullPhone = phonePrefix && phoneNumber ? `${phonePrefix} ${phoneNumber}` : phoneNumber;
+
+    const result = `${firstName} ${lastName}
+${street}
+${zipCode} ${city}
+${country}
+Tel: ${fullPhone}
+VAT: ${vat}`;
+console.log(result)
+
+    document.getElementById('invoiceData').value = result.trim();
+}
+
 
 
 (() => {
     // nasłuchiwania na zdarzenie kliknięcia myszką
     document.addEventListener('click', handleClick);
 
+    myForm.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            myForm.requestSubmit();
+        }
+    });
+    
     
     fetchAndFillCountryCodes();
     fetchAndFillCountries().then(() => getCountryByIP());
@@ -126,9 +158,14 @@ async function fetchAndFillCountryCodes() {
         getCountryCode(selectedCountry);
     });
 
+    vatNumberInput.addEventListener('change', () => {
+        updateInvoiceData();
+    });
+
     vatUECheckbox.addEventListener('change', () => {
         if (vatUECheckbox.checked) {
             invoiceSection.removeAttribute('hidden');
+            updateInvoiceData();
         } else {
             invoiceSection.setAttribute('hidden', 'true');
         }

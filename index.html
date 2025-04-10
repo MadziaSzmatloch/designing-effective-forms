@@ -9,9 +9,12 @@
     <script src="script.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js" defer></script>
+    
+   <!-- select z wyszukiwaniem <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js" defer></script>  -->
+
 
     <title>Efektywne formularze</title>
 </head>
@@ -23,54 +26,88 @@
             <div class="mb-3 row align-items-center">
             <div class="col">
                 <label for="firstName" class="form-label">Imię</label>
-                <input type="text" class="form-control" id="firstName" placeholder="Wpisz imię" required>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-person"></i></span>
+                    <input type="text" class="form-control" id="firstName" placeholder="John" required>
+                </div>
             </div>
             <div  class="col">
                 <label for="lastName" class="form-label">Nazwisko</label>
-                <input type="text" class="form-control" id="lastName" placeholder="Wpisz nazwisko" required>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-person"></i></span>
+                <input type="text" class="form-control" id="lastName" placeholder="Smith" required>
+                </div>
             </div>
             </div>
             
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-at"></i></span>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="john.smith@gmail.com">
+                </div>
             </div>
+
+            <!--
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+                <input type="password" class="form-control" id="exampleInputPassword1">
+                </div>
+            </div>
+        -->
+
             <div class="mb-3">
                 <label for="street" class="form-label">Ulica</label>
-                <input type="text" class="form-control" id="street" placeholder="Wpisz ulicę" required>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-house-door"></i></span>
+                <input type="text" class="form-control" id="street" placeholder="5th Avenue" required>
+                </div>
+            </div>
+            <div  class="mb-3 row align-items-center">
+                <div class="col">
+                    <label for="zipCode" class="form-label">Kod pocztowy</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-house-door"></i></span>
+                    <input type="text" class="form-control" id="zipCode" placeholder="07008" required>
+                    </div>
+                </div>
+                <div class="col">
+                    <label for="city" class="form-label">Miasto</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-houses"></i></span>
+                    <input type="text" class="form-control" id="city" placeholder="New York" required>
+                    </div>
+                </div>
             </div>
             <div class="mb-3 row align-items-center">
             <div class="col">
                 <label for="country" class="form-label">Kraj</label>
+                
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-globe-americas"></i></span>
                  <select class="form-select" id="country" required>
-                    <option value="">Wybierz kraj</option>
                      <!-- Options will be filled by JavaScript -->
                 </select> 
+                </div>
                 <!--<input list="countryList" id="country" class="form-control" placeholder="Wpisz kraj" required>
                 <datalist id="countryList"></datalist>-->
             </div>
             <div class="row col">
                 <label for="phoneNumber" class="form-label">Numer telefonu komórkowego</label>
                 <div class="input-group">
-                    <select class="form-select" id="countryCode" aria-label="Wybierz numer kierunkowy">
+                    <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+                    <select class="form-select" id="countryCode" aria-label="+1">
                         <option selected>Wybierz...</option>
                         <!-- Options will be filled by JavaScript -->
                     </select>
-                    <input type="text" class="form-control" id="phoneNumber" placeholder="Wpisz numer komórkowy"
+                    <input type="text" class="form-control" id="phoneNumber" placeholder="123 456 789"
                         required>
                 </div>
             </div>
         </div>
-            <div  class="mb-3 row align-items-center">
-                <div class="col">
-                    <label for="zipCode" class="form-label">Kod pocztowy</label>
-                    <input type="text" class="form-control" id="zipCode" placeholder="Wpisz kod pocztowy" required>
-                </div>
-                <div class="col">
-                    <label for="city" class="form-label">Miasto</label>
-                    <input type="text" class="form-control" id="city" placeholder="Wpisz miasto" required>
-                </div>
-            </div>
+            
             <div class="mb-3">
                 <label for="shippingMethod" class="form-label">Rodzaj przesyłki</label>
                 <div id="shippingOptions" class="" role="group" aria-label="Shipping Methods">
@@ -107,10 +144,6 @@
             </div>
 
             <!-- Dodatkowe pola, np. dane do faktury -->
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
-            </div>
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="vatUE">
                 <label class="form-check-label" for="vatUE">VAT UE</label>
@@ -118,7 +151,11 @@
             <div id="invoiceSection" hidden>
                 <div class="mb-3">
                     <label for="vatNumber" class="form-label">VAT Number</label>
+                    
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-folder"></i></span>
                     <input type="text" class="form-control" id="vatNumber" aria-describedby="vatHelp">
+                    </div>
                     <div id="vatHelp" class="form-text">Kod kraju państwa członkowskiego i seria cyfr unikalnych dla tego
                         podmiotu gospodarczego.</div>
                 </div>

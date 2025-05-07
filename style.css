@@ -39,16 +39,6 @@ legend {
     border-color: #0d6efd;
 }
 
-.invalid-feedback {
-    display: none;
-}
-
-.was-validated .form-control:invalid,
-.was-validated .form-select:invalid,
-.was-validated .form-check-input:invalid ~ .invalid-feedback {
-    display: block;
-}
-
 .hidden {
     display: none;
 }

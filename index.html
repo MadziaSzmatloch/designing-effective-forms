@@ -14,41 +14,34 @@
 </head>
 <body>
     <div class="container mt-4 mb-4">
-        <button id="signInButton" class="btn btn-primary">
- Create Account / Sign In
- </button>
-        <button id="signOutButton" class="btn btn-secondary">
- Sign Out
- </button>
+        <button id="signInButton" class="btn btn-primary">Create Account / Sign In</button>
+        <button id="signOutButton" class="btn btn-secondary">Sign Out</button>
     </div>
     <div class="container py-4">
         <h1 class="mb-4">Uzupełnij formularz</h1>
-        <form id="form" class="row g-3" novalidate>
+        <form id="form" class="row g-3">
             <!-- Dane osobowe -->
             <fieldset class="border p-3 mb-3">
                 <legend class="fs-5">Dane osobowe</legend>
                 <div class="col-12">
-                    <label for="firstName" class="form-label">Imię <span class="text-danger">*</span></label>
+                    <label for="firstName" class="form-label">Imię</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        <input type="text" class="form-control" id="firstName" required aria-describedby="firstNameFeedback">
-                        <div id="firstNameFeedback" class="invalid-feedback">Proszę wpisać imię.</div>
+                        <input type="text" class="form-control" id="firstName">
                     </div>
                 </div>
                 <div class="col-12">
-                    <label for="lastName" class="form-label">Nazwisko <span class="text-danger">*</span></label>
+                    <label for="lastName" class="form-label">Nazwisko</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        <input type="text" class="form-control" id="lastName" required aria-describedby="lastNameFeedback">
-                        <div id="lastNameFeedback" class="invalid-feedback">Proszę wpisać nazwisko.</div>
+                        <input type="text" class="form-control" id="lastName">
                     </div>
                 </div>
                 <div class="col-12">
-                    <label for="email" class="form-label">Adres email <span class="text-danger">*</span></label>
+                    <label for="email" class="form-label">Adres email</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                        <input type="email" class="form-control" id="email" required aria-describedby="emailFeedback">
-                        <div id="emailFeedback" class="invalid-feedback">Proszę wpisać poprawny adres email.</div>
+                        <input type="email" class="form-control" id="email">
                     </div>
                 </div>
             </fieldset>
@@ -57,36 +50,32 @@
             <fieldset class="border p-3 mb-3">
                 <legend class="fs-5">Adres</legend>
                 <div class="col-12 position-relative">
-                    <label for="country" class="form-label">Kraj <span class="text-danger">*</span></label>
+                    <label for="country" class="form-label">Kraj</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-globe"></i></span>
-                        <input type="text" class="form-control" id="country" autocomplete="off" required aria-describedby="countryFeedback">
-                        <div id="countryFeedback" class="invalid-feedback">Proszę wybrać kraj.</div>
+                        <input type="text" class="form-control" id="country" autocomplete="off">
                     </div>
                     <ul id="countrySuggestions" class="list-group position-absolute w-100" style="z-index: 1000; max-height: 200px; overflow-y: auto; display: none;"></ul>
                 </div>
                 <div class="col-12">
-                    <label for="street" class="form-label">Ulica <span class="text-danger">*</span></label>
+                    <label for="street" class="form-label">Ulica</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-road"></i></span>
-                        <input type="text" class="form-control" id="street" required aria-describedby="streetFeedback">
-                        <div id="streetFeedback" class="invalid-feedback">Proszę wpisać ulicę.</div>
+                        <input type="text" class="form-control" id="street">
                     </div>
                 </div>
                 <div class="col-12">
-                    <label for="city" class="form-label">Miasto <span class="text-danger">*</span></label>
+                    <label for="city" class="form-label">Miasto</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-city"></i></span>
-                        <input type="text" class="form-control" id="city" required aria-describedby="cityFeedback">
-                        <div id="cityFeedback" class="invalid-feedback">Proszę wpisać miasto.</div>
+                        <input type="text" class="form-control" id="city">
                     </div>
                 </div>
                 <div class="col-12">
-                    <label for="zipCode" class="form-label">Kod pocztowy <span class="text-danger">*</span></label>
+                    <label for="zipCode" class="form-label">Kod pocztowy</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-mail-bulk"></i></span>
-                        <input type="text" class="form-control" id="zipCode" required pattern="[0-9]{2}-[0-9]{3}" aria-describedby="zipCodeFeedback">
-                        <div id="zipCodeFeedback" class="invalid-feedback">Proszę wpisać kod pocztowy w formacie XX-XXX.</div>
+                        <input type="text" class="form-control" id="zipCode">
                     </div>
                 </div>
             </fieldset>
@@ -95,62 +84,58 @@
             <fieldset class="border p-3 mb-3">
                 <legend class="fs-5">Numer telefonu</legend>
                 <div class="col-12">
-                    <label for="countryCode" class="form-label">Kod kraju <span class="text-danger">*</span></label>
+                    <label for="countryCode" class="form-label">Kod kraju</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                        <select class="form-select" id="countryCode" required aria-describedby="countryCodeFeedback">
+                        <select class="form-select" id="countryCode">
                             <option value="">Wybierz...</option>
                             <option value="+48">+48 (Polska)</option>
                             <option value="+1">+1 (Stany Zjednoczone)</option>
                             <option value="+44">+44 (Wielka Brytania)</option>
                             <option value="+49">+49 (Niemcy)</option>
                         </select>
-                        <div id="countryCodeFeedback" class="invalid-feedback">Proszę wybrać kod kraju.</div>
                     </div>
                 </div>
                 <div class="col-12">
-                    <label for="phoneNumber" class="form-label">Numer telefonu <span class="text-danger">*</span></label>
+                    <label for="phoneNumber" class="form-label">Numer telefonu</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-mobile"></i></span>
-                        <input type="tel" class="form-control" id="phoneNumber" required pattern="[0-9]{9}" aria-describedby="phoneNumberFeedback">
-                        <div id="phoneNumberFeedback" class="invalid-feedback">Proszę wpisać 9-cyfrowy numer telefonu.</div>
+                        <input type="tel" class="form-control" id="phoneNumber">
                     </div>
                 </div>
             </fieldset>
 
             <!-- Przesyłka -->
             <fieldset class="border p-3 mb-3">
-                <legend class="fs-5">Rodzaj przesyłki <span class="text-danger">*</span></legend>
+                <legend class="fs-5">Rodzaj przesyłki</legend>
                 <div class="col-12">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="shippingMethod" id="shippingDPD" value="DPD" required>
+                        <input class="form-check-input" type="radio" name="shippingMethod" id="shippingDPD" value="DPD">
                         <label class="form-check-label" for="shippingDPD"><i class="fas fa-truck me-1"></i>DPD</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="shippingMethod" id="shippingInPost" value="InPost" required>
+                        <input class="form-check-input" type="radio" name="shippingMethod" id="shippingInPost" value="InPost">
                         <label class="form-check-label" for="shippingInPost"><i class="fas fa-box me-1"></i>InPost</label>
                     </div>
-                    <div id="shippingMethodFeedback" class="invalid-feedback d-block">Proszę wybrać rodzaj przesyłki.</div>
                 </div>
             </fieldset>
 
             <!-- Płatność -->
             <fieldset class="border p-3 mb-3">
-                <legend class="fs-5">Rodzaj płatności <span class="text-danger">*</span></legend>
+                <legend class="fs-5">Rodzaj płatności</legend>
                 <div class="col-12">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="paymentMethod" id="paymentKarta" value="karta" required>
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="paymentKarta" value="karta">
                         <label class="form-check-label" for="paymentKarta"><i class="fas fa-credit-card me-1"></i>Karta</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="paymentMethod" id="paymentBlik" value="blik" required>
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="paymentBlik" value="blik">
                         <label class="form-check-label" for="paymentBlik"><i class="fas fa-mobile-alt me-1"></i>BLIK</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="paymentMethod" id="paymentPosrednik" value="posrednik" required>
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="paymentPosrednik" value="posrednik">
                         <label class="form-check-label" for="paymentPosrednik"><i class="fas fa-wallet me-1"></i>Pośrednik płatności</label>
                     </div>
-                    <div id="paymentMethodFeedback" class="invalid-feedback d-block">Proszę wybrać rodzaj płatności.</div>
                 </div>
             </fieldset>
 

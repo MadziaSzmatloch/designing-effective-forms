@@ -1,195 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
-    <script src="script.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" defer></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-
-    
-   <!-- select z wyszukiwaniem <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js" defer></script>  -->
-
-
+    <script src="script.js" defer></script>
+    <script type="module" src="authentication.js" defer></script>
     <title>Efektywne formularze</title>
 </head>
-
 <body>
-    <div class="container">
-        <h1>Uzupełnij formularz</h1>
-        <form id="form">
-            <div class="mb-3 row align-items-center">
-            <div class="col">
-                <label for="firstName" class="form-label">Imię</label>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-person"></i></span>
-                    <input type="text" class="form-control" id="firstName" placeholder="John" required>
-                </div>
-            </div>
-            <div  class="col">
-                <label for="lastName" class="form-label">Nazwisko</label>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-person"></i></span>
-                <input type="text" class="form-control" id="lastName" placeholder="Smith" required>
-                </div>
-            </div>
-            </div>
-            
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-at"></i></span>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="john.smith@gmail.com">
-                </div>
-            </div>
-
-            <!--
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
-                <input type="password" class="form-control" id="exampleInputPassword1">
-                </div>
-            </div>
-        -->
-
-            <div class="mb-3">
-                <label for="street" class="form-label">Ulica</label>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-house-door"></i></span>
-                <input type="text" class="form-control" id="street" placeholder="5th Avenue" required>
-                </div>
-            </div>
-            <div  class="mb-3 row align-items-center">
-                <div class="col">
-                    <label for="zipCode" class="form-label">Kod pocztowy</label>
+    <div class="container mt-4 mb-4">
+        <button id="signInButton" class="btn btn-primary">
+ Create Account / Sign In
+ </button>
+        <button id="signOutButton" class="btn btn-secondary">
+ Sign Out
+ </button>
+    </div>
+    <div class="container py-4">
+        <h1 class="mb-4">Uzupełnij formularz</h1>
+        <form id="form" class="row g-3" novalidate>
+            <!-- Dane osobowe -->
+            <fieldset class="border p-3 mb-3">
+                <legend class="fs-5">Dane osobowe</legend>
+                <div class="col-12">
+                    <label for="firstName" class="form-label">Imię <span class="text-danger">*</span></label>
                     <div class="input-group">
-                        <span class="input-group-text"><i class="bi bi-house-door"></i></span>
-                    <input type="text" class="form-control" id="zipCode" placeholder="07008" required>
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        <input type="text" class="form-control" id="firstName" required aria-describedby="firstNameFeedback">
+                        <div id="firstNameFeedback" class="invalid-feedback">Proszę wpisać imię.</div>
                     </div>
                 </div>
-                <div class="col">
-                    <label for="city" class="form-label">Miasto</label>
+                <div class="col-12">
+                    <label for="lastName" class="form-label">Nazwisko <span class="text-danger">*</span></label>
                     <div class="input-group">
-                        <span class="input-group-text"><i class="bi bi-houses"></i></span>
-                    <input type="text" class="form-control" id="city" placeholder="New York" required>
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        <input type="text" class="form-control" id="lastName" required aria-describedby="lastNameFeedback">
+                        <div id="lastNameFeedback" class="invalid-feedback">Proszę wpisać nazwisko.</div>
                     </div>
                 </div>
-            </div>
-            <div class="mb-3 row align-items-center">
-            <div class="col">
-                <label for="country" class="form-label">Kraj</label>
-                
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-globe-americas"></i></span>
-                 <select class="form-select" id="country" required>
-                     <!-- Options will be filled by JavaScript -->
-                </select> 
-                </div>
-                <!--<input list="countryList" id="country" class="form-control" placeholder="Wpisz kraj" required>
-                <datalist id="countryList"></datalist>-->
-            </div>
-            <div class="row col">
-                <label for="phoneNumber" class="form-label">Numer telefonu komórkowego</label>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-telephone"></i></span>
-                    <select class="form-select" id="countryCode" aria-label="+1">
-                        <option selected>Wybierz...</option>
-                        <!-- Options will be filled by JavaScript -->
-                    </select>
-                    <input type="text" class="form-control" id="phoneNumber" placeholder="123 456 789"
-                        required>
-                </div>
-            </div>
-        </div>
-            
-            <div class="mb-3">
-                <label for="shippingMethod" class="form-label">Rodzaj przesyłki</label>
-                <div id="shippingOptions" class="" role="group" aria-label="Shipping Methods">
-                    <input type="radio" class="btn-check" name="shippingMethod" id="dpd" value="DPD" autocomplete="off" required>
-                    <label class="btn btn-outline-primary" for="dpd">
-                        <img src="images//inpost.png" class="">
-                    </label>
-            
-                    <input type="radio" class="btn-check" name="shippingMethod" id="inPost" value="InPost" autocomplete="off" required>
-                    <label class="btn btn-outline-primary" for="inPost">
-                        <img src="images//dpd.png" alt="InPost" class="">
-                    </label>
-                </div>
-            </div>
-            
-            
-            
-            <div class="mb-3">
-                <label for="paymentMethod" class="form-label">Rodzaj płatności</label>
-                    <div id="paymentoptions" class="" role="group" aria-label="Payment Methods">
-                        <input type="radio" class="btn-check" name="paymentMethod" id="visa" value="visa" autocomplete="off" required>
-                        <label class="btn btn-outline-primary" for="visa">
-                            <img src="images//visa.png" class="">
-                        </label>
-                        <input type="radio" class="btn-check" name="paymentMethod" id="gpay" value="gpay" autocomplete="off" required>
-                        <label class="btn btn-outline-primary" for="gpay">
-                            <img src="images//gpay.png" class="">
-                        </label>
-                        <input type="radio" class="btn-check" name="paymentMethod" id="blik" value="blik" autocomplete="off" required>
-                        <label class="btn btn-outline-primary" for="blik">
-                            <img src="images//blik.png" class="">
-                        </label>
+                <div class="col-12">
+                    <label for="email" class="form-label">Adres email <span class="text-danger">*</span></label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                        <input type="email" class="form-control" id="email" required aria-describedby="emailFeedback">
+                        <div id="emailFeedback" class="invalid-feedback">Proszę wpisać poprawny adres email.</div>
                     </div>
-            </div>
+                </div>
+            </fieldset>
 
-            <!-- Dodatkowe pola, np. dane do faktury -->
-            <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="vatUE">
-                <label class="form-check-label" for="vatUE">VAT UE</label>
-            </div>
-            <div id="invoiceSection" hidden>
-                <div class="mb-3">
-                    <label for="vatNumber" class="form-label">VAT Number</label>
-                    
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-folder"></i></span>
-                    <input type="text" class="form-control" id="vatNumber" aria-describedby="vatHelp">
+            <!-- Adres -->
+            <fieldset class="border p-3 mb-3">
+                <legend class="fs-5">Adres</legend>
+                <div class="col-12 position-relative">
+                    <label for="country" class="form-label">Kraj <span class="text-danger">*</span></label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-globe"></i></span>
+                        <input type="text" class="form-control" id="country" autocomplete="off" required aria-describedby="countryFeedback">
+                        <div id="countryFeedback" class="invalid-feedback">Proszę wybrać kraj.</div>
                     </div>
-                    <div id="vatHelp" class="form-text">Kod kraju państwa członkowskiego i seria cyfr unikalnych dla tego
-                        podmiotu gospodarczego.</div>
+                    <ul id="countrySuggestions" class="list-group position-absolute w-100" style="z-index: 1000; max-height: 200px; overflow-y: auto; display: none;"></ul>
                 </div>
+                <div class="col-12">
+                    <label for="street" class="form-label">Ulica <span class="text-danger">*</span></label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-road"></i></span>
+                        <input type="text" class="form-control" id="street" required aria-describedby="streetFeedback">
+                        <div id="streetFeedback" class="invalid-feedback">Proszę wpisać ulicę.</div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <label for="city" class="form-label">Miasto <span class="text-danger">*</span></label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-city"></i></span>
+                        <input type="text" class="form-control" id="city" required aria-describedby="cityFeedback">
+                        <div id="cityFeedback" class="invalid-feedback">Proszę wpisać miasto.</div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <label for="zipCode" class="form-label">Kod pocztowy <span class="text-danger">*</span></label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-mail-bulk"></i></span>
+                        <input type="text" class="form-control" id="zipCode" required pattern="[0-9]{2}-[0-9]{3}" aria-describedby="zipCodeFeedback">
+                        <div id="zipCodeFeedback" class="invalid-feedback">Proszę wpisać kod pocztowy w formacie XX-XXX.</div>
+                    </div>
+                </div>
+            </fieldset>
 
-                <div class="mb-3">
-                    <label for="invoiceData" class="form-label">Dane do faktury</label>
-                    <textarea class="form-control" id="invoiceData" rows="3" placeholder="Wpisz dane do faktury"></textarea>
+            <!-- Telefon -->
+            <fieldset class="border p-3 mb-3">
+                <legend class="fs-5">Numer telefonu</legend>
+                <div class="col-12">
+                    <label for="countryCode" class="form-label">Kod kraju <span class="text-danger">*</span></label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                        <select class="form-select" id="countryCode" required aria-describedby="countryCodeFeedback">
+                            <option value="">Wybierz...</option>
+                            <option value="+48">+48 (Polska)</option>
+                            <option value="+1">+1 (Stany Zjednoczone)</option>
+                            <option value="+44">+44 (Wielka Brytania)</option>
+                            <option value="+49">+49 (Niemcy)</option>
+                        </select>
+                        <div id="countryCodeFeedback" class="invalid-feedback">Proszę wybrać kod kraju.</div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <label for="phoneNumber" class="form-label">Numer telefonu <span class="text-danger">*</span></label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-mobile"></i></span>
+                        <input type="tel" class="form-control" id="phoneNumber" required pattern="[0-9]{9}" aria-describedby="phoneNumberFeedback">
+                        <div id="phoneNumberFeedback" class="invalid-feedback">Proszę wpisać 9-cyfrowy numer telefonu.</div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Przesyłka -->
+            <fieldset class="border p-3 mb-3">
+                <legend class="fs-5">Rodzaj przesyłki <span class="text-danger">*</span></legend>
+                <div class="col-12">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="shippingMethod" id="shippingDPD" value="DPD" required>
+                        <label class="form-check-label" for="shippingDPD"><i class="fas fa-truck me-1"></i>DPD</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="shippingMethod" id="shippingInPost" value="InPost" required>
+                        <label class="form-check-label" for="shippingInPost"><i class="fas fa-box me-1"></i>InPost</label>
+                    </div>
+                    <div id="shippingMethodFeedback" class="invalid-feedback d-block">Proszę wybrać rodzaj przesyłki.</div>
+                </div>
+            </fieldset>
+
+            <!-- Płatność -->
+            <fieldset class="border p-3 mb-3">
+                <legend class="fs-5">Rodzaj płatności <span class="text-danger">*</span></legend>
+                <div class="col-12">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="paymentKarta" value="karta" required>
+                        <label class="form-check-label" for="paymentKarta"><i class="fas fa-credit-card me-1"></i>Karta</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="paymentBlik" value="blik" required>
+                        <label class="form-check-label" for="paymentBlik"><i class="fas fa-mobile-alt me-1"></i>BLIK</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="paymentPosrednik" value="posrednik" required>
+                        <label class="form-check-label" for="paymentPosrednik"><i class="fas fa-wallet me-1"></i>Pośrednik płatności</label>
+                    </div>
+                    <div id="paymentMethodFeedback" class="invalid-feedback d-block">Proszę wybrać rodzaj płatności.</div>
+                </div>
+            </fieldset>
+
+            <!-- VAT UE Checkbox -->
+            <div class="col-12">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="vatUE">
+                    <label class="form-check-label" for="vatUE">Wystaw fakturę VAT UE</label>
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
-                data-bs-target="#form-feedback-modal">submit</button>
+            <!-- Faktura -->
+            <fieldset id="invoiceSection" class="border p-3 mb-3 hidden">
+                <legend class="fs-5">Dane do faktury</legend>
+                <div class="col-12">
+                    <label for="vatNumber" class="form-label">Numer VAT</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-file-invoice"></i></span>
+                        <input type="text" class="form-control" id="vatNumber" aria-describedby="vatHelp">
+                        <div id="vatHelp" class="form-text">Kod kraju i seria cyfr, np. PL1234567890</div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <label for="invoiceData" class="form-label">Dodatkowe dane do faktury</label>
+                    <textarea class="form-control" id="invoiceData" rows="3"></textarea>
+                </div>
+            </fieldset>
+
+            <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#form-feedback-modal">Wyślij</button>
         </form>
     </div>
 
-
-    <!-- Raport kliknięć -->
-    <div class="modal fade" id="form-feedback-modal" tabindex="-1" aria-labelledby="raportModalLabel"
-        aria-hidden="true">
+    <!-- Modal raportu kliknięć -->
+    <div class="modal fade" id="form-feedback-modal" tabindex="-1" aria-labelledby="raportModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="raportModalLabel">Raport kliknięć</h1>
+                    <h1 class="modal-title fs-5" id="raportModalLabel">Podsumowanie</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <p>Formularz został wysłany pomyślnie!</p>
                     <p>Ilość kliknięć myszką: <span id="click-count">0</span></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
                 </div>
             </div>
         </div>
     </div>
 </body>
-
 </html>

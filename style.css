@@ -1,27 +1,54 @@
+body {
+    background-color: #f8f9fa;
+    max-height: 100vh;
+    overflow-y: auto;
+}
+
+.container {
+    max-width: 600px;
+}
+
+form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+fieldset {
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+}
+
+legend {
+    font-weight: 500;
+    padding: 0 10px;
+}
+
 .modal {
     background: #c6d0ff7a;
 }
 
-.choices__inner{
-    padding: 0px !important;
-    min-height: 38px !important;
-    border-radius: .375rem !important;
+.list-group-item:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
 }
 
-.choices__list--single{
-    padding: 7px 16px 4px 12px !important;
+.form-check-input:checked {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
 }
 
-.btn-img{
-    width: 100px;
-    height: 50px;
+.invalid-feedback {
+    display: none;
 }
 
-label{
-    font-weight: 500;
+.was-validated .form-control:invalid,
+.was-validated .form-select:invalid,
+.was-validated .form-check-input:invalid ~ .invalid-feedback {
+    display: block;
 }
 
-.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active{
-    background-color: white;
-    border: 4px solid var(--bs-btn-active-border-color);
+.hidden {
+    display: none;
 }

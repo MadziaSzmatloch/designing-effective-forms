@@ -1,173 +1,121 @@
 let clickCount = 0;
-
+const form = document.getElementById('form');
 const countryInput = document.getElementById('country');
-const myForm = document.getElementById('form');
-const modal = document.getElementById('form-feedback-modal');
+const countrySuggestions = document.getElementById('countrySuggestions');
+const countryCodeSelect = document.getElementById('countryCode');
 const clicksInfo = document.getElementById('click-count');
-let countryChoices;
 const vatUECheckbox = document.getElementById('vatUE');
-const vatNumberInput = document.getElementById('vatNumber');
 const invoiceSection = document.getElementById('invoiceSection');
+let countries = [];
 
 function handleClick() {
     clickCount++;
     clicksInfo.innerText = clickCount;
 }
 
-/* async function fetchAndFillCountries() {
+async function fetchAndFillCountries() {
     try {
         const response = await fetch('https://restcountries.com/v3.1/all');
-        if (!response.ok) {
-            throw new Error('Błąd pobierania danych');
-        }
+        if (!response.ok) throw new Error('Błąd pobierania danych');
         const data = await response.json();
-        const countries = data.map(country => country.name.common);
-        countryInput.innerHTML = countries.map(country => `<option value="${country}">${country}</option>`).join('');
+        countries = data.map(country => country.name.common).sort();
+        populateSuggestions(countries);
     } catch (error) {
         console.error('Wystąpił błąd:', error);
     }
-}  */
-
-    async function fetchAndFillCountries() {
-        try {
-            const response = await fetch('https://restcountries.com/v3.1/all');
-            if (!response.ok) throw new Error('Błąd pobierania danych');
-            const data = await response.json();
-            const countries = data.map(c => c.name.common).sort();
-    
-            countryInput.innerHTML = `<option value="">Wybierz kraj</option>` + countries.map(country =>
-                `<option value="${country}">${country}</option>`).join('');
-    
-            countryChoices = new Choices(countryInput, {
-                searchEnabled: true,
-                shouldSort: true,
-                itemSelectText: '',
-                placeholderValue: 'Wybierz kraj',
-            });
-        } catch (error) {
-            console.error('Wystąpił błąd:', error);
-        }
-    }
-    
-
-function getCountryByIP() {
-    fetch('https://get.geojs.io/v1/ip/geo.json')
-        .then(response => response.json())
-        .then(data => {
-            const country = data.country;
-            countryInput.value = country;
-            getCountryCode(country);
-        })
-        .catch(error => {
-            console.error('Błąd pobierania danych z serwera GeoJS:', error);
-        });
 }
 
-function getCountryCode(countryName) {
-    const apiUrl = `https://restcountries.com/v3.1/name/${countryName}?fullText=true`;
-
-    fetch(apiUrl)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Błąd pobierania danych');
-        }
-        return response.json();
-    })
-    .then(data => {        
-        const countryCode = data[0].idd.root + data[0].idd.suffixes.join("")
-        const codeSelect = document.getElementById('countryCode');
-    for (let i = 0; i < codeSelect.options.length; i++) {
-        if (codeSelect.options[i].value === countryCode) {
-            codeSelect.selectedIndex = i;
-            break;
-        }
-    }
-    })
-    .catch(error => {
-        console.error('Wystąpił błąd:', error);
+function populateSuggestions(suggestions) {
+    countrySuggestions.innerHTML = suggestions.map(s => `<li class="list-group-item" data-value="${s}">${s}</li>`).join('');
+    countrySuggestions.querySelectorAll('li').forEach(item => {
+        item.addEventListener('click', () => {
+            countryInput.value = item.dataset.value;
+            countrySuggestions.style.display = 'none';
+            getCountryCode(item.dataset.value);
+        });
     });
 }
 
-async function fetchAndFillCountryCodes() {
+countryInput.addEventListener('input', () => {
+    const query = countryInput.value.toLowerCase();
+    const filtered = countries.filter(c => c.toLowerCase().includes(query));
+    countrySuggestions.style.display = query ? 'block' : 'none';
+    populateSuggestions(filtered);
+    if (countries.includes(countryInput.value)) {
+        getCountryCode(countryInput.value);
+    }
+});
+
+countryInput.addEventListener('focus', () => {
+    if (countryInput.value) {
+        const filtered = countries.filter(c => c.toLowerCase().includes(countryInput.value.toLowerCase()));
+        countrySuggestions.style.display = 'block';
+        populateSuggestions(filtered);
+    }
+});
+
+document.addEventListener('click', (e) => {
+    if (!countryInput.contains(e.target) && !countrySuggestions.contains(e.target)) {
+        countrySuggestions.style.display = 'none';
+    }
+});
+
+async function getCountryByIP() {
     try {
-        const response = await fetch('https://restcountries.com/v3.1/all');
-        if (!response.ok) throw new Error('Błąd pobierania kodów');
-
+        const response = await fetch('https://get.geojs.io/v1/ip/geo.json');
         const data = await response.json();
-        const countryCodes = data
-            .filter(c => c.idd?.root && c.idd?.suffixes?.length)
-            .map(c => {
-                const code = c.idd.root + c.idd.suffixes[0];
-                const name = c.name.common;
-                return { name, code };
-            })
-            .sort((a, b) => a.name.localeCompare(b.name));
-
-        const codeSelect = document.getElementById('countryCode');
-        codeSelect.innerHTML = `<option selected>Wybierz...</option>` + countryCodes
-            .map(({ name, code }) => `<option value="${code}">${code} (${name})</option>`)
-            .join('');
+        const country = data.country;
+        countryInput.value = country;
+        await getCountryCode(country);
     } catch (error) {
-        console.error('Błąd pobierania kodów kierunkowych:', error);
+        console.error('Błąd pobierania danych z GeoJS:', error);
     }
 }
 
-function updateInvoiceData() {
-    const firstName = document.getElementById('firstName').value.trim();
-    const lastName = document.getElementById('lastName').value.trim();
-    const street = document.getElementById('street').value.trim();
-    const city = document.getElementById('city').value.trim();
-    const zipCode = document.getElementById('zipCode').value.trim();
-    const country = document.getElementById('country').value.trim();
-    const phonePrefix = document.getElementById('countryCode').value.trim();
-    const phoneNumber = document.getElementById('phoneNumber').value.trim();
-    const vat = document.getElementById('vatNumber').value.trim();
-
-    const fullPhone = phonePrefix && phoneNumber ? `${phonePrefix} ${phoneNumber}` : phoneNumber;
-
-    const result = `${firstName} ${lastName}
-${street}
-${zipCode} ${city}
-${country}
-Tel: ${fullPhone}
-VAT: ${vat}`;
-console.log(result)
-
-    document.getElementById('invoiceData').value = result.trim();
+async function getCountryCode(countryName) {
+    try {
+        const response = await fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`);
+        if (!response.ok) throw new Error('Błąd pobierania danych');
+        const data = await response.json();
+        const countryCode = data[0].idd.root + (data[0].idd.suffixes ? data[0].idd.suffixes[0] : '');
+        const availableCodes = Array.from(countryCodeSelect.options).map(opt => opt.value);
+        if (availableCodes.includes(countryCode)) {
+            countryCodeSelect.value = countryCode;
+        } else {
+            countryCodeSelect.value = ''; // Reset if code not available
+        }
+    } catch (error) {
+        console.error('Wystąpił błąd:', error);
+        countryCodeSelect.value = ''; // Reset on error
+    }
 }
 
+vatUECheckbox.addEventListener('change', () => {
+    invoiceSection.classList.toggle('hidden', !vatUECheckbox.checked);
+});
 
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+        e.stopPropagation();
+        form.classList.add('was-validated');
+    } else {
+        const modal = new bootstrap.Modal(document.getElementById('form-feedback-modal'));
+        modal.show();
+    }
+});
+
+form.querySelectorAll('input, select, textarea').forEach(input => {
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
+            e.preventDefault();
+            form.querySelector('button[type="submit"]').click();
+        }
+    });
+});
 
 (() => {
-    // nasłuchiwania na zdarzenie kliknięcia myszką
     document.addEventListener('click', handleClick);
-
-    myForm.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            myForm.requestSubmit();
-        }
-    });
-    
-    
-    fetchAndFillCountryCodes();
-    fetchAndFillCountries().then(() => getCountryByIP());
-
-    countryInput.addEventListener('change', () => {
-        const selectedCountry = countryInput.value;
-        getCountryCode(selectedCountry);
-    });
-
-    vatNumberInput.addEventListener('change', () => {
-        updateInvoiceData();
-    });
-
-    vatUECheckbox.addEventListener('change', () => {
-        if (vatUECheckbox.checked) {
-            invoiceSection.removeAttribute('hidden');
-            updateInvoiceData();
-        } else {
-            invoiceSection.setAttribute('hidden', 'true');
-        }
-    });
-})()
+    fetchAndFillCountries();
+    getCountryByIP();
+})();

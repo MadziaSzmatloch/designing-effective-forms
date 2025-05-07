@@ -1,58 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="style.css" rel="stylesheet">
-    <script src="script.js" defer></script>
-    <script type="module" src="authentication.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" defer></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-
-    
-   <!-- select z wyszukiwaniem <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js" defer></script>  -->
-
-
+    <script src="script.js" defer></script>
+    <script type="module" src="authentication.js" defer></script>
     <title>Efektywne formularze</title>
 </head>
-
 <body>
-    
     <div class="container mt-4 mb-4">
-        <button id="signInButton" class="btn btn-primary">
- Create Account / Sign In
- </button>
-        <button id="signOutButton" class="btn btn-secondary">
- Sign Out
- </button>
+        <button id="signInButton" class="btn btn-primary">Create Account / Sign In</button>
+        <button id="signOutButton" class="btn btn-secondary">Sign Out</button>
     </div>
-</div>
-    <div class="container">
-              
-        <h1>Uzupełnij formularz</h1>
-
+    <div class="container py-4">
+        <h1 class="mb-4">Uzupełnij formularz</h1>
         <form id="form">
-            <div class="mb-3 row align-items-center">
-            <div class="col">
+            <div class="mb-3">
                 <label for="firstName" class="form-label">Imię</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-person"></i></span>
                     <input type="text" class="form-control" id="firstName" placeholder="John" required>
                 </div>
             </div>
-            <div  class="col">
+            <div class="mb-3">
                 <label for="lastName" class="form-label">Nazwisko</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-person"></i></span>
-                <input type="text" class="form-control" id="lastName" placeholder="Smith" required>
+                    <input type="text" class="form-control" id="lastName" placeholder="Smith" required>
                 </div>
             </div>
-            </div>
-            
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
                 <div class="input-group">
@@ -60,103 +41,75 @@
                     <input type="email" class="form-control" id="exampleInputEmail1" placeholder="john.smith@gmail.com">
                 </div>
             </div>
-
-            <!--
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
-                <input type="password" class="form-control" id="exampleInputPassword1">
-                </div>
-            </div>
-        -->
-
             <div class="mb-3">
                 <label for="street" class="form-label">Ulica</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-house-door"></i></span>
-                <input type="text" class="form-control" id="street" placeholder="5th Avenue" required>
+                    <input type="text" class="form-control" id="street" placeholder="5th Avenue" required>
                 </div>
             </div>
-            <div  class="mb-3 row align-items-center">
-                <div class="col">
-                    <label for="zipCode" class="form-label">Kod pocztowy</label>
-                    <div class="input-group">
-                        <span class="input-group-text"><i class="bi bi-house-door"></i></span>
+            <div class="mb-3">
+                <label for="zipCode" class="form-label">Kod pocztowy</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-house-door"></i></span>
                     <input type="text" class="form-control" id="zipCode" placeholder="07008" required>
-                    </div>
-                </div>
-                <div class="col">
-                    <label for="city" class="form-label">Miasto</label>
-                    <div class="input-group">
-                        <span class="input-group-text"><i class="bi bi-houses"></i></span>
-                    <input type="text" class="form-control" id="city" placeholder="New York" required>
-                    </div>
                 </div>
             </div>
-            <div class="mb-3 row align-items-center">
-            <div class="col">
+            <div class="mb-3">
+                <label for="city" class="form-label">Miasto</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-houses"></i></span>
+                    <input type="text" class="form-control" id="city" placeholder="New York" required>
+                </div>
+            </div>
+            <div class="mb-3 position-relative">
                 <label for="country" class="form-label">Kraj</label>
-                
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-globe-americas"></i></span>
-                 <select class="form-select" id="country" required>
-                     <!-- Options will be filled by JavaScript -->
-                </select> 
+                    <input type="text" class="form-control" id="country" placeholder="Wpisz kraj" autocomplete="off" required>
                 </div>
-                <!--<input list="countryList" id="country" class="form-control" placeholder="Wpisz kraj" required>
-                <datalist id="countryList"></datalist>-->
+                <ul id="countrySuggestions" class="list-group position-absolute w-100" style="z-index: 1000; max-height: 200px; overflow-y: auto; display: none;"></ul>
             </div>
-            <div class="row col">
+            <div class="mb-3">
                 <label for="phoneNumber" class="form-label">Numer telefonu komórkowego</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-telephone"></i></span>
                     <select class="form-select" id="countryCode" aria-label="+1">
                         <option selected>Wybierz...</option>
-                        <!-- Options will be filled by JavaScript -->
                     </select>
-                    <input type="text" class="form-control" id="phoneNumber" placeholder="123 456 789"
-                        required>
+                    <input type="text" class="form-control" id="phoneNumber" placeholder="123 456 789" required>
                 </div>
             </div>
-        </div>
-            
             <div class="mb-3">
                 <label for="shippingMethod" class="form-label">Rodzaj przesyłki</label>
                 <div id="shippingOptions" class="" role="group" aria-label="Shipping Methods">
                     <input type="radio" class="btn-check" name="shippingMethod" id="dpd" value="DPD" autocomplete="off" required>
                     <label class="btn btn-outline-primary" for="dpd">
-                        <img src="images//inpost.png" class="">
+                        <img src="images/inpost.png" class="">
                     </label>
-            
                     <input type="radio" class="btn-check" name="shippingMethod" id="inPost" value="InPost" autocomplete="off" required>
                     <label class="btn btn-outline-primary" for="inPost">
-                        <img src="images//dpd.png" alt="InPost" class="">
+                        <img src="images/dpd.png" alt="InPost" class="">
                     </label>
                 </div>
             </div>
-            
-            
-            
             <div class="mb-3">
                 <label for="paymentMethod" class="form-label">Rodzaj płatności</label>
-                    <div id="paymentoptions" class="" role="group" aria-label="Payment Methods">
-                        <input type="radio" class="btn-check" name="paymentMethod" id="visa" value="visa" autocomplete="off" required>
-                        <label class="btn btn-outline-primary" for="visa">
-                            <img src="images//visa.png" class="">
-                        </label>
-                        <input type="radio" class="btn-check" name="paymentMethod" id="gpay" value="gpay" autocomplete="off" required>
-                        <label class="btn btn-outline-primary" for="gpay">
-                            <img src="images//gpay.png" class="">
-                        </label>
-                        <input type="radio" class="btn-check" name="paymentMethod" id="blik" value="blik" autocomplete="off" required>
-                        <label class="btn btn-outline-primary" for="blik">
-                            <img src="images//blik.png" class="">
-                        </label>
-                    </div>
+                <div id="paymentoptions" class="" role="group" aria-label="Payment Methods">
+                    <input type="radio" class="btn-check" name="paymentMethod" id="visa" value="visa" autocomplete="off" required>
+                    <label class="btn btn-outline-primary" foruccio="visa">
+                        <img src="images/visa.png" class="">
+                    </label>
+                    <input type="radio" class="btn-check" name="paymentMethod" id="gpay" value="gpay" autocomplete="off" required>
+                    <label class="btn btn-outline-primary" for="gpay">
+                        <img src="images/gpay.png" class="">
+                    </label>
+                    <input type="radio" class="btn-check" name="paymentMethod" id="blik" value="blik" autocomplete="off" required>
+                    <label class="btn btn-outline-primary" for="blik">
+                        <img src="images/blik.png" class="">
+                    </label>
+                </div>
             </div>
-
-            <!-- Dodatkowe pola, np. dane do faktury -->
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="vatUE">
                 <label class="form-check-label" for="vatUE">VAT UE</label>
@@ -164,31 +117,22 @@
             <div id="invoiceSection" hidden>
                 <div class="mb-3">
                     <label for="vatNumber" class="form-label">VAT Number</label>
-                    
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-folder"></i></span>
-                    <input type="text" class="form-control" id="vatNumber" aria-describedby="vatHelp">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-folder"></i></span>
+                        <input type="text" class="form-control" id="vatNumber" aria-describedby="vatHelp">
                     </div>
-                    <div id="vatHelp" class="form-text">Kod kraju państwa członkowskiego i seria cyfr unikalnych dla tego
-                        podmiotu gospodarczego.</div>
+                    <div id="vatHelp" class="form-text">Kod kraju państwa członkowskiego i seria cyfr unikalnych dla tego podmiotu gospodarczego.</div>
                 </div>
-
                 <div class="mb-3">
                     <label for="invoiceData" class="form-label">Dane do faktury</label>
                     <textarea class="form-control" id="invoiceData" rows="3" placeholder="Wpisz dane do faktury"></textarea>
                 </div>
             </div>
-
-            <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
-                data-bs-target="#form-feedback-modal">submit</button>
+            <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#form-feedback-modal">submit</button>
         </form>
-
-  
-
-
+    </div>
     <!-- Raport kliknięć -->
-    <div class="modal fade" id="form-feedback-modal" tabindex="-1" aria-labelledby="raportModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="form-feedback-modal" tabindex="-1" aria-labelledby="raportModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -205,5 +149,4 @@
         </div>
     </div>
 </body>
-
 </html>

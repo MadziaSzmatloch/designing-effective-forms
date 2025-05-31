@@ -20,18 +20,20 @@
     <div class="container py-4">
         <h1 class="mb-4">Uzupełnij formularz</h1>
         <form id="form">
-            <div class="mb-3">
-                <label for="firstName" class="form-label">Imię</label>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-person"></i></span>
-                    <input type="text" class="form-control" id="firstName" placeholder="John" required>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="firstName" class="form-label">Imię</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-person"></i></span>
+                        <input type="text" class="form-control" id="firstName" placeholder="John" required>
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3">
-                <label for="lastName" class="form-label">Nazwisko</label>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-person"></i></span>
-                    <input type="text" class="form-control" id="lastName" placeholder="Smith" required>
+                <div class="col-md-6 mb-3">
+                    <label for="lastName" class="form-label">Nazwisko</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-person"></i></span>
+                        <input type="text" class="form-control" id="lastName" placeholder="Smith" required>
+                    </div>
                 </div>
             </div>
             <div class="mb-3">
@@ -41,35 +43,40 @@
                     <input type="email" class="form-control" id="exampleInputEmail1" placeholder="john.smith@gmail.com">
                 </div>
             </div>
-            <div class="mb-3">
-                <label for="street" class="form-label">Ulica</label>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-house-door"></i></span>
-                    <input type="text" class="form-control" id="street" placeholder="5th Avenue" required>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="street" class="form-label">Ulica</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-house-door"></i></span>
+                        <input type="text" class="form-control" id="street" placeholder="5th Avenue" required>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="zipCode" class="form-label">Kod pocztowy</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-house-door"></i></span>
+                        <input type="text" class="form-control" id="zipCode" placeholder="07008" required>
+                    </div>
                 </div>
             </div>
-            <div class="mb-3">
-                <label for="zipCode" class="form-label">Kod pocztowy</label>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-house-door"></i></span>
-                    <input type="text" class="form-control" id="zipCode" placeholder="07008" required>
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="city" class="form-label">Miasto</label>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-houses"></i></span>
-                    <input type="text" class="form-control" id="city" placeholder="New York" required>
-                </div>
-            </div>
-            <div class="mb-3 position-relative">
-                <label for="country" class="form-label">Kraj</label>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-globe-americas"></i></span>
-                    <input type="text" class="form-control" id="country" placeholder="Wpisz kraj" autocomplete="off" required>
-                </div>
-                <ul id="countrySuggestions" class="list-group position-absolute w-100" style="z-index: 1000; max-height: 200px; overflow-y: auto; display: none;"></ul>
-            </div>
+            <div class="row">
+    <div class="col-md-6 mb-3">
+        <label for="city" class="form-label">Miasto</label>
+        <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-houses"></i></span>
+            <input type="text" class="form-control" id="city" placeholder="New York" required>
+        </div>
+    </div>
+    <div class="col-md-6 mb-3 position-relative">
+        <label for="country" class="form-label">Kraj</label>
+        <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-globe-americas"></i></span>
+            <input type="text" class="form-control" id="country" placeholder="Wpisz kraj" autocomplete="off" required>
+        </div>
+        <ul id="countrySuggestions" class="list-group position-absolute w-100" style="z-index: 1000; max-height: 200px; overflow-y: auto; display: none;"></ul>
+    </div>
+</div>
+
             <div class="mb-3">
                 <label for="phoneNumber" class="form-label">Numer telefonu komórkowego</label>
                 <div class="input-group">
@@ -97,7 +104,7 @@
                 <label for="paymentMethod" class="form-label">Rodzaj płatności</label>
                 <div id="paymentoptions" class="" role="group" aria-label="Payment Methods">
                     <input type="radio" class="btn-check" name="paymentMethod" id="visa" value="visa" autocomplete="off" required>
-                    <label class="btn btn-outline-primary" foruccio="visa">
+                    <label class="btn btn-outline-primary" for="visa">
                         <img src="images/visa.png" class="">
                     </label>
                     <input type="radio" class="btn-check" name="paymentMethod" id="gpay" value="gpay" autocomplete="off" required>
@@ -131,7 +138,6 @@
             <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#form-feedback-modal">submit</button>
         </form>
     </div>
-    <!-- Raport kliknięć -->
     <div class="modal fade" id="form-feedback-modal" tabindex="-1" aria-labelledby="raportModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
